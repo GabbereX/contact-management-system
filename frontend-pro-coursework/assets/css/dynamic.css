@@ -1,0 +1,90 @@
+.body-fixed {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.rotate::after {
+  margin-left: 3px;
+  transform: rotate(180deg);
+}
+
+[data-sort] {
+  color: var(--color-very-light-violet);
+}
+
+.scale {
+  transform: scale(1,1);
+}
+
+.opacity {
+  opacity: 1;
+}
+
+.opacity-client {
+  opacity: 1;
+  border-bottom: 1px solid rgba(200, 197, 209, 0.5);
+}
+
+.add-contact-button__hidden, .hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.padding-x-25 {
+  padding: 25px 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.j-content-center {
+  justify-content: center;
+}
+
+.d-none {
+  display: none;
+}
+
+.select-head_arrow-open::after {
+  transform: translate(-3px, -50%) rotate(-45deg);
+}
+
+.select-head_arrow-open::before {
+  transform: translate(3px, -50%) rotate(45deg);
+}
+
+.select-body_active {
+  max-height: 114px;
+  border-bottom: 1px solid var(--color-grayish-blue);
+  z-index: 102;
+}
+
+.input-label-transform {
+  transform: translate(-8%,-20px) scale(0.8,0.8);
+}
+
+.error-validate {
+  border-color: var(--color-soft-red);
+  z-index: 101;
+}
+
+.opacity-07 {
+  opacity: 0.7;
+}
+
+.opacity-07:hover {
+  opacity: 1;
+}
+
+.select-background {
+  background: var(--very-light-grayish-violet);
+}
+
+.select-client-background {
+  background: var(--color-soft-yellow);
+}

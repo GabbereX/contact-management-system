@@ -1,0 +1,143 @@
+@media (max-width: 1350px) {
+  .main {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  #tableColumnDateCreate_ID,
+  #tableColumnDateEdit_ID {
+    min-width: 140px;
+    max-width: 140px;
+    vertical-align: top;
+  }
+
+  .table__column:nth-last-child(2) {
+    min-width: 125px;
+    max-width: 125px;
+  }
+
+  .table__column:nth-last-child(1) {
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+  .delete__client-button {
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #tableColumnId_ID {
+    min-width: 95px;
+    max-width: 95px;
+  }
+
+  #tableColumnDateCreate_ID,
+  #tableColumnDateEdit_ID {
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+
+
+  .client__cell:nth-child(3) > div,
+  .client__cell:nth-child(4) > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .time {
+    margin-top: 5px;
+    margin-left: 0;
+  }
+
+  .table__column:nth-last-child(1) {
+    min-width: 115px;
+    max-width: 115px;
+  }
+
+  .delete__client-button {
+    margin-top: 10px;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .table__column:nth-last-child(2) {
+    min-width: 75px;
+    max-width: 75px;
+  }
+}
+
+@media (max-width: 800px) {
+  .table__column,
+  .client__cell,
+  .client__cell:nth-child(5) {
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .logo {
+    margin: 0;
+  }
+
+  #searchContainer_ID {
+    display: none;
+  }
+
+  .main {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .table {
+    min-width: 728px;
+    max-width: 728px;
+
+  }
+
+  .table__container {
+    overflow: scroll;
+    scrollbar-width: none;
+  }
+
+  .table__container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .modal-window {
+    width: 300px;
+  }
+
+  .modal-title {
+    padding: 0 15px;
+  }
+
+  .modal-input-container {
+    width: calc(100% - 30px);
+  }
+
+  .all-contacts-container {
+    max-width: calc(100% - 30px);
+  }
+
+  .add-contact__input {
+    width: 125px;
+  }
+
+  .replace-modal-add-contact-button {
+    text-align: center;
+  }
+
+  .modal-id {
+    left: 15px;
+    top: 55px;
+  }
+}

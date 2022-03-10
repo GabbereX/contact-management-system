@@ -1,0 +1,104 @@
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    local('Open Sans'),
+    url('../fonts/opensans-regular.woff2') format('woff2'),
+    url('../fonts/opensans-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    local('Open Sans'),
+    url('../fonts/opensans-semibold.woff2') format('woff2'),
+    url('../fonts/opensans-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src:
+    local('Open Sans'),
+    url('../fonts/opensans-bold.woff2') format('woff2'),
+    url('../fonts/opensans-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-white: #ffffff;
+  --color-very-light-gray: #f5f5f5;
+  --light-grayish-violet: #e7e5eb;
+  --very-light-grayish-violet: #f4f3f6;
+  --color-grayish-blue: #c8c5d1;
+  --color-gray: #b0b0b0;
+  --color-pale-violet: #b89eff;
+  --color-very-light-violet: #9873ff;
+  --color-light-violet: #8052ff;
+  --color-very-dark-gray: #333333;
+  --color-soft-red: #f06a4d;
+  --color-soft-yellow: #fcf4a9;
+  --color-black: #000000;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-very-dark-gray);
+  box-sizing: border-box;
+
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--color-very-light-gray);
+  overflow-y: scroll;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-weight: 700;
+}
+
+input {
+  background: var(--color-white);
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+svg {
+  background: none;
+}
+
