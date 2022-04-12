@@ -29,6 +29,6 @@ function getDate(fullDate) {
   dateTime.append(dateSpan, timeSpan);
 
   return dateTime;
-};
+}
 
 export { getDate };

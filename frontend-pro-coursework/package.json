@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "dotenv-quokka-plugin": "^1.0.0",
-    "jsdom-quokka-plugin": "^1.0.16"
-  }
-}

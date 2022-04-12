@@ -4,12 +4,16 @@ import { dataBase } from './api.js';
 
 function getSortClients() {
   const sort = (key, column) => {
-    column ?
-      (column.dataset.sort = key) & column.classList.toggle('rotate') : false;
+    if (column) {
+      column.dataset.sort = key;
+      column.classList.toggle('rotate');
+    }
 
     tableHead_ID.childNodes.forEach(item => {
-      item !== column ?
-        item.classList.remove('rotate') & item.removeAttribute('data-sort') : false;
+      if (item !== column) {
+        item.classList.remove('rotate');
+        item.removeAttribute('data-sort');
+      }
     });
 
     tableColumnName_ID.classList.contains('rotate') ?
@@ -40,7 +44,7 @@ function getSortClients() {
       !dataBase[0].fullname ?
         dataBase.forEach(data => data.fullname = (data.surname + data.name + data.lastName).toLowerCase()) : false;
       sort('fullname', e.target);
-    };
+    }
     e.target === tableColumnId_ID ? sort('id', e.target) : false;
     e.target === tableColumnDateCreate_ID ? sort('createdAt', e.target) : false;
     e.target === tableColumnDateEdit_ID ? sort('updatedAt', e.target) : false;
@@ -49,6 +53,6 @@ function getSortClients() {
     getClientList(dataBase)
 
   });
-};
+}
 
 export {getSortClients}

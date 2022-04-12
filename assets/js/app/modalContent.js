@@ -14,7 +14,7 @@ function getModalContainer() {
     modalContainer,
     modalWindow
   };
-};
+}
 
 function getModalContent(modalTitle, { onOpen, onClose }, value) {
   const modalContainer = getModalContainer().modalContainer;
@@ -32,7 +32,7 @@ function getModalContent(modalTitle, { onOpen, onClose }, value) {
     surnameContainer,
     nameContainer,
     lastNameContainer
-  ] = Array(3).fill().map((container) => {
+  ] = Array(3).fill('').map((container) => {
     container = document.createElement('div');
     container.classList.add('modal-input-container');
     form.append(container);
@@ -43,7 +43,7 @@ function getModalContent(modalTitle, { onOpen, onClose }, value) {
     surnameInput,
     nameInput,
     lastNameInput
-  ] = Array(3).fill().map((input) => {
+  ] = Array(3).fill('').map((input) => {
     input = document.createElement('input');
     input.classList.add('modal-input');
     input.type = 'text';
@@ -55,7 +55,7 @@ function getModalContent(modalTitle, { onOpen, onClose }, value) {
     surnameLabel,
     nameLabel,
     lastNameLabel
-  ] = Array(3).fill().map((label) => {
+  ] = Array(3).fill('').map((label) => {
     label = document.createElement('label');
     label.classList.add('modal-input-label');
     return label;
@@ -67,7 +67,7 @@ function getModalContent(modalTitle, { onOpen, onClose }, value) {
     cancelButton,
     deleteButton,
     closeButton
-  ] = Array(5).fill().map(() => document.createElement('button'));
+  ] = Array(5).fill('').map(() => document.createElement('button'));
 
   id.classList.add('modal-id');
   form.classList.add('modal-form');
@@ -184,7 +184,7 @@ function getModalContent(modalTitle, { onOpen, onClose }, value) {
     checkDeletion,
     errorsContainer
   };
-};
+}
 
 function getNewContact(
   addContactButton,
@@ -201,7 +201,7 @@ function getNewContact(
     select,
     selectHead,
     selectBody
-  ] = Array(4).fill().map(() => document.createElement('div'));
+  ] = Array(4).fill('').map(() => document.createElement('div'));
 
   const [
     telephoneOption,
@@ -214,7 +214,7 @@ function getNewContact(
     okOption,
     myWorldOption,
     linkedinOption
-  ] = Array(10).fill().map(option => {
+  ] = Array(10).fill('').map(option => {
     option = document.createElement('div');
     option.classList.add('contact__option');
     selectBody.append(option);
@@ -272,8 +272,12 @@ function getNewContact(
     input.removeAttribute('maxlength');
     input.removeAttribute('data-url');
 
-    selectHead.innerText === 'Телефон' || selectHead.innerText === 'Доп. телефон' ?
-      input.setAttribute('maxlength', '18') & (input.type = 'tel') : input.type = 'url';
+    if (selectHead.innerText === 'Телефон' || selectHead.innerText === 'Доп. телефон') {
+      input.setAttribute('maxlength', '18');
+      input.type = 'tel';
+    } else {
+      input.type = 'url';
+    }
 
     selectHead.innerText === 'Email' ?
       input.type = 'email' : false;
@@ -290,20 +294,28 @@ function getNewContact(
   checkedSelectBody();
   checkedSelectHead();
 
-  allContactsContainer.childNodes.length === MAX_CONTACT_CONTAINERS ?
-    addContactButton.classList.add('add-contact-button__hidden') &
-    replaceAddContactButton.classList.remove('add-contact-button__hidden') : false;
+  if (allContactsContainer.childNodes.length === MAX_CONTACT_CONTAINERS) {
+    addContactButton.classList.add('add-contact-button__hidden');
+    replaceAddContactButton.classList.remove('add-contact-button__hidden')
+  }
 
   allContactsContainer.style.height = +allContactsContainer.style.height.replace('px', '') + WIDTH_CONTACT_CONTAINER + 'px';
   setTimeout(() => container.classList.add('opacity'), TIMEOUT_1MS);
 
-  allContactsContainer.childNodes ?
-    (addContactButton.style.marginTop = '10px') & (addContactContainer.style.padding = '25px 0') : false;
+  if (allContactsContainer.childNodes) {
+    addContactButton.style.marginTop = '10px'
+    addContactContainer.style.padding = '25px 0'
+  }
 
   modalWindow.addEventListener('click', (e) => {
-    e.target === selectHead ?
-      selectBody.classList.toggle('select-body_active') & selectHead.classList.toggle('select-head_arrow-open') :
-      selectBody.classList.remove('select-body_active') & selectHead.classList.remove('select-head_arrow-open');
+    if (e.target === selectHead) {
+      selectBody.classList.toggle('select-body_active');
+      selectHead.classList.toggle('select-head_arrow-open');
+    } else {
+      selectBody.classList.remove('select-body_active');
+      selectHead.classList.remove('select-head_arrow-open');
+    }
+
   });
 
   selectBody.addEventListener('click', (e) => {
@@ -320,12 +332,15 @@ function getNewContact(
 
       container.remove();
 
-      allContactsContainer.childNodes.length === 0 ?
-        (addContactContainer.style.padding = '8px 0') & (addContactButton.style.marginTop = '0px') : false;
+      if (allContactsContainer.childNodes.length === 0) {
+        addContactContainer.style.padding = '8px 0';
+        addContactButton.style.marginTop = '0px';
+      }
 
-      allContactsContainer.childNodes.length < MAX_CONTACT_CONTAINERS ?
-        addContactButton.classList.remove('add-contact-button__hidden') &
-        replaceAddContactButton.classList.add('add-contact-button__hidden') : false;
+      if (allContactsContainer.childNodes.length < MAX_CONTACT_CONTAINERS) {
+          addContactButton.classList.remove('add-contact-button__hidden');
+          replaceAddContactButton.classList.add('add-contact-button__hidden');
+      }
     };
 
     setTimeout(action, TIMEOUT_200MS)
@@ -335,7 +350,7 @@ function getNewContact(
 
   contactValue ? input.value = contactValue : false;
 
-};
+}
 
 function getInputMask(input) {
   input.addEventListener('input', (e) => {
@@ -360,12 +375,12 @@ function getInputMask(input) {
         e.data && /\D/g.test(e.data) ? input.value = formattedValue : false;
         value.length > 10 ? input.value = formattedValue : false;
         return;
-      };
+      }
 
       input.value = formattedValue;
 
       !value ? input.value = '' : false;
-    };
+    }
 
     if (input.type === 'url') {
       const value = input.value.trim().toLowerCase().replace(/[^a-zа-я\-_:?%.\d/]/g, '');
@@ -376,7 +391,7 @@ function getInputMask(input) {
       /\w\//.test(formattedValue) ? formattedValue = formattedValue.replace(/(https?:\/\/)|(www\.)/g, '') : false;
 
       input.value = formattedValue;
-    };
+    }
 
     if (input.type === 'text') {
       const value = input.value ?
@@ -386,7 +401,7 @@ function getInputMask(input) {
           formattedValue = formattedValue.replace(/[\s\-]{2}/, (match) => `${match[1]}`);
 
       input.value = formattedValue.replace(/[\s\-].?/g, str => str.toUpperCase());
-    };
+    }
   });
 
   // ! events 'keydown' & 'paste' for mask input type = 'tel'
@@ -398,7 +413,7 @@ function getInputMask(input) {
           input.value = '' : false;
         e.key === '+' && input.value.replace(/\D/g, '').length === 0 ?
           input.value = '7' : false;
-      };
+      }
     });
 
     input.addEventListener('paste', (e) => {
@@ -407,14 +422,14 @@ function getInputMask(input) {
         if (pasted) {
           const pastedText = pasted.getData('Text');
           /\D/g.test(pastedText) ? input.value = input.value.replace(/\D/g, '') : false;
-        };
-      };
+        }
+      }
     });
   };
 
   getInputTelephoneMaskHelper(input);
 
-};
+}
 
 function getFormValidation(form, title, value = null, modalContainer, modalWindow, { onClose }) {
   form.addEventListener('submit', (e) => {
@@ -432,38 +447,39 @@ function getFormValidation(form, title, value = null, modalContainer, modalWindo
       if (input.type === 'text') {
         input.value.length === 1 ? getError(input, 'не может содержать менее 2 символов') :
         input.value.length > 32 ? getError(input, 'не может содержать более 32 символов') :
-        /^.?(\-|\s).?|.?(\-|\s).?$/.test(input.value) ? getError(input, 'перед и после дефиса или пробела не может быть менее 2 символов') :
+        /^.?(-|\s).?|.?(-|\s).?$/.test(input.value) ? getError(input, 'перед и после дефиса или пробела не может быть менее 2 символов') :
         /(?=(.))\1{3,}/gi.test(input.value) ? getError(input, 'не может содержать 3 или более повторяющихся символов подряд') :
         !input.value & (input.id === 'surnameInput_ID' || input.id === 'nameInput_ID') ? getError(input, 'это поле обязательно для заполнения') : false;
-      };
+      }
 
       if (input.type === 'tel') {
         input.value && input.value.match(/\d/g).length < 11 ? getError(input, 'должен содержать минимум 11 цифр') :
         /\+[0-689]/.test(input.value) ? getError(input, 'с любым кодом страны кроме +7 не принимается') :
         !input.value ? getError(input, 'поле не может быть пустым') : false;
-      };
+      }
 
       if (input.type === 'url') {
         const regExp = new RegExp(`\^${input.dataset.url + '/'}\.{2}`);
         !input.value ? getError(input, 'поле не может быть пустым') :
         !regExp.test(input.value) ? getError(input, `некорректная ссылка на профиль (пример: ${input.dataset.url}/ваш_id)`) : false;
-      };
+      }
 
       if (input.type === 'email') {
         !input.value ? getError(input, 'поле не может быть пустым') :
-        !/[-\w]{2,}@[-\w\.]{2,10}\.[\w]{2,10}/.test(input.value) ? getError(input, 'некорректный почтовый адрес (пример: mail@mail.ru)') :
+        !/[-\w]{2,}@[-\w.]{2,10}\.[\w]{2,10}/.test(input.value) ? getError(input, 'некорректный почтовый адрес (пример: mail@mail.ru)') :
         input.value.length > 256 ? getError(input, 'поле не может содержать более 256 символов') : false;
-      };
+      }
     });
 
     if (errorsContainer_ID.innerHTML === '') {
       title.innerText === 'Новый клиент' ? createClient(getClientData) : false;
       title.innerText === 'Изменить данные' ? editClient(getClientData, value.id) : false;
-    };
+    }
 
-    errorsContainer_ID.innerHTML === '' ?
-      history.replaceState(null, null, ' ') & onClose(modalContainer, modalWindow) : false
-
+    if (errorsContainer_ID.innerHTML === '') {
+      history.replaceState(null, null, ' ');
+      onClose(modalContainer, modalWindow);
+    }
   });
 };
 
@@ -490,6 +506,6 @@ function getClientData() {
    };
 
   return data;
-};
+}
 
 export { getModalContent };

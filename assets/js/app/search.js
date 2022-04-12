@@ -15,7 +15,7 @@ function getSearchDropDownList() {
   return {
     dropDownContainer
   };
-};
+}
 
 function getSearchClient() {
   const dropDownContainer = getSearchDropDownList().dropDownContainer;
@@ -25,10 +25,13 @@ function getSearchClient() {
     inputSearch_ID.value = inputSearch_ID.value.replace(/(^\s)|(\s{2}$)/g, (match, p1, p2) =>
     match === p1 ? p1 = '' : match === p2 ? p2 = ' ' : false);
 
-    !inputSearch_ID.value ?
-      (dropDownContainer.classList.add('hidden')) &
-      (dropDownList_ID.innerHTML = '') &
-      (dropDownContainer.style.height = '0') : dropDownContainer.classList.remove('hidden');
+    if (!inputSearch_ID.value) {
+      dropDownContainer.classList.add('hidden');
+      dropDownList_ID.innerHTML = '';
+      dropDownContainer.style.height = '0';
+    } else {
+      dropDownContainer.classList.remove('hidden');
+    }
 
     const renderSearchDropDownListAction = () => {
       if (inputSearch_ID.value) {
@@ -37,7 +40,7 @@ function getSearchClient() {
           .includes(inputSearch_ID.value.toLowerCase())
         );
         renderSearchDropDownList(filterData, dropDownContainer);
-      };
+      }
     };
 
     clearTimeout(timeout);
@@ -52,7 +55,7 @@ function getSearchClient() {
     });
 
    accessibilitySearchDropDownList(dropDownContainer)
-};
+}
 
 function renderSearchDropDownList(filterData, dropDownContainer) {
   const WIDTH_DROPDOWN_CONTAINER = 44;
@@ -79,7 +82,7 @@ function renderSearchDropDownList(filterData, dropDownContainer) {
 
     setTimeout(() => dropDownItem.classList.add('opacity'), 1)
   });
-};
+}
 
 function accessibilitySearchDropDownList(dropDownContainer) {
   let indexItem = -1;
@@ -98,7 +101,7 @@ function accessibilitySearchDropDownList(dropDownContainer) {
           block: 'center',
           behavior: 'smooth',
         });
-      };
+      }
     });
   };
 
@@ -110,11 +113,15 @@ function accessibilitySearchDropDownList(dropDownContainer) {
   dropDownList_ID.addEventListener('mousemove', (e) => {
     const indexOf = Array.prototype.indexOf.call(e.target.parentElement.children, e.target);
 
-    !flagItem ? deleteSelection() & (flagItem = true) : false
+    if (!flagItem) {
+      deleteSelection();
+      flagItem = true
+    }
 
-    !e.target.classList.contains('select-background') ?
-      (e.target.classList.add('select-background')) &
-      (indexItem = indexOf) : false;
+    if (!e.target.classList.contains('select-background')) {
+      e.target.classList.add('select-background');
+      indexItem = indexOf;
+    }
   });
 
   inputSearch_ID.addEventListener('keydown', (e) => {
@@ -125,7 +132,7 @@ function accessibilitySearchDropDownList(dropDownContainer) {
         indexItem > (dropDownItems.length - 1) ? indexItem = 0 : false;
         dropDownItems[indexItem].classList.add('select-background');
         flagItem = false;
-      };
+      }
 
       if (e.key === 'ArrowUp') {
         deleteSelection();
@@ -133,15 +140,17 @@ function accessibilitySearchDropDownList(dropDownContainer) {
         indexItem < 0 ? indexItem = (dropDownItems.length - 1) : false;
         dropDownItems[indexItem].classList.add('select-background');
         flagItem = false;
-      };
+      }
 
       if (e.key === 'Enter') {
         dropDownItems.forEach(i => {
-          i.classList.contains('select-background') ?
-            (inputSearch_ID.value = i.textContent.trim()) & selectAction(i.dataset.searchId) : false;
+          if (i.classList.contains('select-background')) {
+            inputSearch_ID.value = i.textContent.trim();
+            selectAction(i.dataset.searchId);
+          }
         });
-      };
-    };
+      }
+    }
   });
 
   searchContainer_ID.addEventListener('click', (e) => {
@@ -149,6 +158,6 @@ function accessibilitySearchDropDownList(dropDownContainer) {
     inputSearch_ID.value = e.target.textContent.trim();
     selectAction(e.target.dataset.searchId);
   });
-};
+}
 
 export { getSearchClient };

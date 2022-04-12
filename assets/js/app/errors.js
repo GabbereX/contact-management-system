@@ -19,7 +19,7 @@ const getError = (input = null, errorReason, id = 'errorsContainer_ID') => {
     input.type === 'url' ? inputLabel = 'Профиль ' + input.dataset.url + ' ' : false;
     input.classList.add('error-validate');
     error.innerText = `${inputLabel}: ${errorReason}`;
-  } else error.innerText = errorReason;;
+  } else error.innerText = errorReason;
 
   error.classList.add('error-reason')
   errorsContainer.append(error);

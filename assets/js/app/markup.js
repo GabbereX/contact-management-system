@@ -20,7 +20,7 @@ function getHeader() {
   container.append(logo, searchContainer);
 
   return container;
-};
+}
 
 function getMain() {
   const main = document.createElement('main');
@@ -30,11 +30,12 @@ function getMain() {
   title.classList.add('title');
 
   title.innerText = 'Клиенты';
+  main.id = 'main_ID'
 
   main.append(title);
 
   return main;
-};
+}
 
 function getClientsTable() {
   const tableContainer = document.createElement('div');
@@ -50,7 +51,7 @@ function getClientsTable() {
     tableColumnDateEdit,
     tableColumnContacts,
     tableColumnActions
-  ] = Array(6).fill().map((i) => {
+  ] = Array(6).fill('').map((i) => {
     i = document.createElement('th');
     i.classList.add('table__column');
     tableHead.append(i);
@@ -90,7 +91,7 @@ function getClientsTable() {
   return {
     tableContainer
   };
-};
+}
 
 function getAddClientButton() {
   const button = document.createElement('button');
@@ -102,7 +103,7 @@ function getAddClientButton() {
   return {
     button
   };
-};
+}
 
 function spin(tableBody) {
   tableBody.innerHTML = '';
@@ -120,6 +121,6 @@ function spin(tableBody) {
 
   tr.append(td);
   tableBody.append(tr);
-};
+}
 
 export { getHeader, getMain, getClientsTable, getAddClientButton, spin };

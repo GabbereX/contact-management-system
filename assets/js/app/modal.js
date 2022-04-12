@@ -15,7 +15,7 @@ function getModal(button, title, value = null) {
         modalContent.cancelButton,
         modalContent.closeButton,
       );
-    };
+    }
 
     if (title === 'Удалить клиента') {
       modalWindow.append(
@@ -37,12 +37,12 @@ function getModal(button, title, value = null) {
           history.replaceState(null, null, ' ');
           onClose(modalContainer, modalWindow);
           document.querySelector('.modal-container').remove();
-        };
+        }
       });
-    };
+    }
 
   });
-};
+}
 
 function getEditClientModal() {
   const callModalEditClient = () => {
@@ -61,20 +61,22 @@ function getEditClientModal() {
 
   window.location.hash ? callModalEditClient() : false;
   window.addEventListener('hashchange', callModalEditClient);
-};
+}
 
 function onOpen(modalContainer, modalWindow) {
   document.body.classList.add('body-fixed');
 
-  const action = () =>
-    modalContainer.classList.add('fixed', 'opacity') &
-    modalWindow.classList.add('scale', 'opacity', 'padding-x-25');
+  const action = () => {
+
+    modalContainer.classList.add('fixed', 'opacity');
+    modalWindow.classList.add('scale', 'opacity', 'padding-x-25')
+  };
 
   setTimeout((action), 100);
 
   modalContainer.append(modalWindow);
   document.body.append(modalContainer);
-};
+}
 
 function onClose(modalContainer, modalWindow) {
   document.body.classList.remove('body-fixed');
@@ -82,13 +84,14 @@ function onClose(modalContainer, modalWindow) {
   modalContainer.classList.remove('opacity');
   modalWindow.classList.remove('scale', 'opacity', 'padding-x-25');
 
-  const action = () =>
-    modalContainer.classList.remove('fixed') &
-    modalContainer.remove();
+  const action = () => {
+    modalContainer.classList.remove('fixed');
+    modalContainer.remove()
+  };
 
   setTimeout((action), 400);
 
   history.replaceState(null, null, ' ');
-};
+}
 
 export { getModal, getEditClientModal };

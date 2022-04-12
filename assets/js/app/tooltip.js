@@ -22,6 +22,6 @@ function getTooltip(value, link = null) {
   return {
     tooltip
   };
-};
+}
 
 export { getTooltip };

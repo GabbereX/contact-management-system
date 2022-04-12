@@ -17,7 +17,7 @@ function getClientList(data) {
 
     tableBody_ID.append(clientData.clientLine)
   });
-};
+}
 
 function getClient(id, name, surname, lastName, contacts, createdAt, updatedAt, value) {
   const clientLine = document.createElement('tr');
@@ -30,7 +30,7 @@ function getClient(id, name, surname, lastName, contacts, createdAt, updatedAt, 
     updatedAtColumn,
     contactsColumn,
     actionColumn
-  ] = Array(7).fill().map(element => {
+  ] = Array(7).fill('').map(element => {
     element = document.createElement('td');
     element.classList.add('client__cell');
     return element;
@@ -74,7 +74,7 @@ function getClient(id, name, surname, lastName, contacts, createdAt, updatedAt, 
    return {
     clientLine
   };
-};
+}
 
 function contactsItems(contacts, contactsColumn) {
   const MAX_VISIBLE_CONTACT_ICONS = 4;
@@ -104,12 +104,13 @@ function contactsItems(contacts, contactsColumn) {
     button.append(icon);
     contactsColumn.append(container)
 
-    index >= MAX_VISIBLE_CONTACT_ICONS ?
-      (button.classList.add('d-none')) &
-      (button.classList.remove('opacity-07')) : false;
+    if (index >= MAX_VISIBLE_CONTACT_ICONS) {
+      button.classList.add('d-none');
+      button.classList.remove('opacity-07');
+    }
 
   }) : false;
-};
+}
 
 function contactsItemsHiddenButton(contactsColumn) {
   const hiddenIconsButton = document.createElement('button');
@@ -120,11 +121,12 @@ function contactsItemsHiddenButton(contactsColumn) {
 
   hiddenIconsButton.classList.add('d-none', 'opacity-07')
 
-  contactButtons.length > MAX_VISIBLE_CONTACT_ICONS ?
-    hiddenIconsButton.classList.add('hidden-icons', 'contact-button') &
-    (hiddenIconsButton.innerText = `+${contactButtons.length - MAX_VISIBLE_CONTACT_ICONS}`) &
-    hiddenIconsButton.classList.remove('d-none') &
-    contactsColumn.append(hiddenIconsButton) : false
+  if (contactButtons.length > MAX_VISIBLE_CONTACT_ICONS) {
+    hiddenIconsButton.classList.add('hidden-icons', 'contact-button');
+    hiddenIconsButton.innerText = `+${contactButtons.length - MAX_VISIBLE_CONTACT_ICONS}`;
+    hiddenIconsButton.classList.remove('d-none');
+    contactsColumn.append(hiddenIconsButton);
+  }
 
   hiddenIconsButton.addEventListener('click', () => {
     hiddenIconsButton.classList.add('d-none');
@@ -135,6 +137,6 @@ function contactsItemsHiddenButton(contactsColumn) {
       setTimeout(() => contact.classList.add('opacity-07'), TIMEOUT_100MS);
     });
   });
-};
+}
 
 export { getClientList }
