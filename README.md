@@ -1,6 +1,6 @@
 # Система управления контактными данными клиентов.
 
-[DEMO](https://gabberex.ru/portfolio/contact-management-system/)
+<!-- [DEMO](https://gabberex.ru/portfolio/contact-management-system/) -->
 
 ## Запуск через терминал
 - перейти в папку **crm-backend**
